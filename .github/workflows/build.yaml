@@ -101,7 +101,8 @@ jobs:
 
   desktop:
     name: Desktop ${{ matrix.platform }}
-    if: (github.event_name == 'workflow_dispatch' || !github.event.repository.private) && !(github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
+    # FlClash-po0 ships Android only, so the desktop debug builds stay upstream's.
+    if: github.repository == 'chen08209/FlClash' && (github.event_name == 'workflow_dispatch' || !github.event.repository.private) && !(github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -304,7 +305,7 @@ jobs:
 
   windows-helper-test:
     name: Windows helper test
-    if: *checks
+    if: github.repository == 'chen08209/FlClash' && (github.event_name == 'workflow_dispatch' || !github.event.repository.private)
     runs-on: windows-2022
     steps:
       - name: Checkout
