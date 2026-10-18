@@ -1,11 +1,11 @@
 script_template: inno_setup.iss
-app_id: 728B3532-C74B-4870-9068-BE70FE12A3E6
-app_name: FlClash
-publisher: chen08209
-publisher_url: https://github.com/chen08209/FlClash
-display_name: FlClash
-executable_name: FlClash.exe
-output_base_file_name: FlClash.exe
+app_id: 3F6C2B9E-8D41-4A7F-B5E2-6C0D9A1F4E73
+app_name: FlClash-po0
+publisher: xuziyanhuan
+publisher_url: https://github.com/xuziyanhuan/FlClash-po0
+display_name: FlClash-po0
+executable_name: FlClash-po0.exe
+output_base_file_name: FlClash-po0.exe
 # Resolved against the project root: flutter_distributor turns this into an
 # absolute path via Directory.current.
 setup_icon_file: windows\runner\resources\app_icon.ico

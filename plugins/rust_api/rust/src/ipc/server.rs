@@ -210,7 +210,7 @@ mod tests {
     fn socket_path() -> String {
         static NEXT: AtomicUsize = AtomicUsize::new(0);
         let name = format!(
-            "flclash-ipc-{}-{}.sock",
+            "flclashpo0-ipc-{}-{}.sock",
             std::process::id(),
             NEXT.fetch_add(1, Ordering::Relaxed),
         );
