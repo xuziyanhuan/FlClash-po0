@@ -447,6 +447,11 @@ _Config _$ConfigFromJson(Map<String, dynamic> json) => _Config(
           ?.map((e) => e as String)
           .toList() ??
       const [],
+  po0FirewallProps: json['po0FirewallProps'] == null
+      ? defaultPo0FirewallProps
+      : Po0FirewallProps.safeFromJson(
+          json['po0FirewallProps'] as Map<String, Object?>?,
+        ),
 );
 
 Map<String, dynamic> _$ConfigToJson(_Config instance) => <String, dynamic>{
@@ -461,4 +466,5 @@ Map<String, dynamic> _$ConfigToJson(_Config instance) => <String, dynamic>{
   'windowGeometry': instance.windowProps,
   'patchClashConfig': instance.patchClashConfig,
   'excludeSSIDs': instance.excludeSSIDs,
+  'po0FirewallProps': instance.po0FirewallProps,
 };

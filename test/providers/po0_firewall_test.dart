@@ -24,11 +24,8 @@ class _FakeClient extends Po0FirewallClient {
   Po0ResultType pollType = Po0ResultType.applied;
   Completer<void>? gate;
 
-  Po0TokenResult _result(Po0Token token, Po0ResultType type) => Po0TokenResult(
-    label: token.label,
-    type: type,
-    currentIp: '1.2.3.0/24',
-  );
+  Po0TokenResult _result(Po0Token token, Po0ResultType type) =>
+      Po0TokenResult(label: token.label, type: type, currentIp: '1.2.3.0/24');
 
   @override
   Future<Po0TokenResult> poll(Po0Token token) async {
@@ -190,9 +187,8 @@ void main() {
     notifier.start();
     await settle();
     updateSetting(
-      (state) => state.copyWith(
-        tokenEntries: const [Po0TokenEntry(token: 'pgnfw_c')],
-      ),
+      (state) =>
+          state.copyWith(tokenEntries: const [Po0TokenEntry(token: 'pgnfw_c')]),
     );
     await settle();
     expect(client.whitelisted, [const Po0Token('pgnfw_c')]);

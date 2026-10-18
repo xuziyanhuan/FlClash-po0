@@ -20,7 +20,8 @@ class Po0FirewallView extends ConsumerWidget {
     final isRunning = ref.watch(
       po0FirewallProvider.select((state) => state.isRunning),
     );
-    final canRun = setting.enable && po0TokensOf(setting.tokenEntries).isNotEmpty;
+    final canRun =
+        setting.enable && po0TokensOf(setting.tokenEntries).isNotEmpty;
     final notifier = ref.read(po0FirewallProvider.notifier);
     return CommonScaffold(
       title: appLocalizations.po0Whitelist,
@@ -118,11 +119,7 @@ class _SettingSection extends ConsumerWidget {
 class _TokenSection extends ConsumerWidget {
   const _TokenSection();
 
-  Future<void> _edit(
-    BuildContext context,
-    WidgetRef ref, {
-    int? index,
-  }) async {
+  Future<void> _edit(BuildContext context, WidgetRef ref, {int? index}) async {
     final entries = ref.read(po0FirewallSettingProvider).tokenEntries;
     final current = index == null ? null : entries[index];
     final result = await dialogs.showCommonDialog<Po0TokenEntry>(
@@ -154,9 +151,7 @@ class _TokenSection extends ConsumerWidget {
     final confirmed = await dialogs.showMessage(
       title: appLocalizations.delete,
       destructive: true,
-      message: TextSpan(
-        text: appLocalizations.deleteTip(_displayName(entry)),
-      ),
+      message: TextSpan(text: appLocalizations.deleteTip(_displayName(entry))),
     );
     if (confirmed != true) {
       return;
@@ -345,9 +340,7 @@ class _ResultSection extends ConsumerWidget {
             padding: const EdgeInsets.only(bottom: 8),
             child: _ResultCard(result: result),
           ),
-        ListFooter(
-          text: appLocalizations.po0LastRun(lastRunAt.showTime),
-        ),
+        ListFooter(text: appLocalizations.po0LastRun(lastRunAt.showTime)),
       ],
     );
   }

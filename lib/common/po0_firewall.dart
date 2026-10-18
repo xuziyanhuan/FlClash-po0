@@ -36,9 +36,7 @@ final _po0TokenPattern = RegExp('^$_po0TokenPrefix[^\\s,|;、@]+\$');
 bool isPo0Token(String value) => _po0TokenPattern.hasMatch(value);
 
 /// The first entry wins when a token is listed twice.
-List<({Po0Token token, String name})> po0TokensOf(
-  List<Po0TokenEntry> entries,
-) {
+List<({Po0Token token, String name})> po0TokensOf(List<Po0TokenEntry> entries) {
   final seen = <String>{};
   return [
     for (final entry in entries)
@@ -343,16 +341,16 @@ class Po0FirewallClient {
     }
     final rawWhitelist = data['whitelist'];
     if (rawWhitelist is! List) {
-      return base.copyWith(
-        message: _snippet(_redact(response.body, token)),
-      );
+      return base.copyWith(message: _snippet(_redact(response.body, token)));
     }
     final whitelist = [
       for (final item in rawWhitelist)
         item is Map
             ? Po0WhitelistEntry(
                 ip: '${item['ip']}',
-                slot: item['slot'] is num ? (item['slot'] as num).toInt() : null,
+                slot: item['slot'] is num
+                    ? (item['slot'] as num).toInt()
+                    : null,
               )
             : Po0WhitelistEntry(ip: '$item'),
     ];

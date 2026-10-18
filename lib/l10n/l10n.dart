@@ -4790,20 +4790,20 @@ class AppLocalizations {
     );
   }
 
-  /// `Windows refused to run FlClashCore.exe (error {code}). An app control policy such as Smart App Control or AppLocker blocks unsigned programs; allow FlClash in that policy or turn it off, then try again.`
+  /// `Windows refused to run FlClashPo0Core.exe (error {code}). An app control policy such as Smart App Control or AppLocker blocks unsigned programs; allow FlClash in that policy or turn it off, then try again.`
   String coreBlockedByPolicyTip(Object code) {
     return Intl.message(
-      'Windows refused to run FlClashCore.exe (error $code). An app control policy such as Smart App Control or AppLocker blocks unsigned programs; allow FlClash in that policy or turn it off, then try again.',
+      'Windows refused to run FlClashPo0Core.exe (error $code). An app control policy such as Smart App Control or AppLocker blocks unsigned programs; allow FlClash in that policy or turn it off, then try again.',
       name: 'coreBlockedByPolicyTip',
       desc: '',
       args: [code],
     );
   }
 
-  /// `Windows Smart App Control blocked FlClashCore.exe because it is not signed. Open Windows Security → App & browser control → Smart App Control settings, choose Off, then start FlClash again. Smart App Control cannot be turned back on without reinstalling Windows.`
+  /// `Windows Smart App Control blocked FlClashPo0Core.exe because it is not signed. Open Windows Security → App & browser control → Smart App Control settings, choose Off, then start FlClash again. Smart App Control cannot be turned back on without reinstalling Windows.`
   String get coreBlockedBySmartAppControlTip {
     return Intl.message(
-      'Windows Smart App Control blocked FlClashCore.exe because it is not signed. Open Windows Security → App & browser control → Smart App Control settings, choose Off, then start FlClash again. Smart App Control cannot be turned back on without reinstalling Windows.',
+      'Windows Smart App Control blocked FlClashPo0Core.exe because it is not signed. Open Windows Security → App & browser control → Smart App Control settings, choose Off, then start FlClash again. Smart App Control cannot be turned back on without reinstalling Windows.',
       name: 'coreBlockedBySmartAppControlTip',
       desc: '',
       args: [],
@@ -7835,6 +7835,201 @@ class AppLocalizations {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Whitelist`
+  String get po0Whitelist {
+    return Intl.message('Whitelist', name: 'po0Whitelist', desc: '', args: []);
+  }
+
+  /// `Auto whitelist`
+  String get po0AutoWhitelist {
+    return Intl.message(
+      'Auto whitelist',
+      name: 'po0AutoWhitelist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `While the app is open, checks each po0 machine's firewall at the interval and adds your exit /24 when it is missing, whether or not the proxy is on. Requests always go direct.`
+  String get po0AutoWhitelistDesc {
+    return Intl.message(
+      'While the app is open, checks each po0 machine\'s firewall at the interval and adds your exit /24 when it is missing, whether or not the proxy is on. Requests always go direct.',
+      name: 'po0AutoWhitelistDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check interval`
+  String get po0PollInterval {
+    return Intl.message(
+      'Check interval',
+      name: 'po0PollInterval',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a whole number from {min} to {max}`
+  String po0PollIntervalTip(Object min, Object max) {
+    return Intl.message(
+      'Enter a whole number from $min to $max',
+      name: 'po0PollIntervalTip',
+      desc: '',
+      args: [min, max],
+    );
+  }
+
+  /// `Tokens`
+  String get po0Tokens {
+    return Intl.message('Tokens', name: 'po0Tokens', desc: '', args: []);
+  }
+
+  /// `No tokens`
+  String get po0TokensEmpty {
+    return Intl.message(
+      'No tokens',
+      name: 'po0TokensEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy the pgnfw_ token from the Firewall card on the po0 console machine page. A token is a whitelist credential; do not share it.`
+  String get po0TokensDesc {
+    return Intl.message(
+      'Copy the pgnfw_ token from the Firewall card on the po0 console machine page. A token is a whitelist credential; do not share it.',
+      name: 'po0TokensDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add token`
+  String get po0AddToken {
+    return Intl.message('Add token', name: 'po0AddToken', desc: '', args: []);
+  }
+
+  /// `Edit token`
+  String get po0EditToken {
+    return Intl.message('Edit token', name: 'po0EditToken', desc: '', args: []);
+  }
+
+  /// `Name (optional)`
+  String get po0TokenName {
+    return Intl.message(
+      'Name (optional)',
+      name: 'po0TokenName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A po0 token starts with pgnfw_ and has no spaces`
+  String get po0TokenInvalid {
+    return Intl.message(
+      'A po0 token starts with pgnfw_ and has no spaces',
+      name: 'po0TokenInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Query status`
+  String get po0Query {
+    return Intl.message('Query status', name: 'po0Query', desc: '', args: []);
+  }
+
+  /// `Whitelist now`
+  String get po0WhitelistNow {
+    return Intl.message(
+      'Whitelist now',
+      name: 'po0WhitelistNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Whitelist`
+  String get po0Results {
+    return Intl.message('Whitelist', name: 'po0Results', desc: '', args: []);
+  }
+
+  /// `Last checked at {time}`
+  String po0LastRun(Object time) {
+    return Intl.message(
+      'Last checked at $time',
+      name: 'po0LastRun',
+      desc: '',
+      args: [time],
+    );
+  }
+
+  /// `Current exit: {ip}`
+  String po0CurrentExit(Object ip) {
+    return Intl.message(
+      'Current exit: $ip',
+      name: 'po0CurrentExit',
+      desc: '',
+      args: [ip],
+    );
+  }
+
+  /// `Entries`
+  String get po0WhitelistEntries {
+    return Intl.message(
+      'Entries',
+      name: 'po0WhitelistEntries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Whitelisted`
+  String get po0StatusApplied {
+    return Intl.message(
+      'Whitelisted',
+      name: 'po0StatusApplied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not listed`
+  String get po0StatusNotApplied {
+    return Intl.message(
+      'Not listed',
+      name: 'po0StatusNotApplied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Firewall off`
+  String get po0StatusDisabled {
+    return Intl.message(
+      'Firewall off',
+      name: 'po0StatusDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get po0StatusRejected {
+    return Intl.message(
+      'Rejected',
+      name: 'po0StatusRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get po0StatusError {
+    return Intl.message('Failed', name: 'po0StatusError', desc: '', args: []);
   }
 }
 

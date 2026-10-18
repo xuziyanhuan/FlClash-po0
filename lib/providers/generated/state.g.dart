@@ -60,16 +60,19 @@ final class SetupPatchProvider
             bool appendSystemDns,
             bool bypassPrivateRoute,
             PatchClashConfig patchConfig,
+            bool po0Whitelist,
           }),
           ({
             bool appendSystemDns,
             bool bypassPrivateRoute,
             PatchClashConfig patchConfig,
+            bool po0Whitelist,
           }),
           ({
             bool appendSystemDns,
             bool bypassPrivateRoute,
             PatchClashConfig patchConfig,
+            bool po0Whitelist,
           })
         >
     with
@@ -78,6 +81,7 @@ final class SetupPatchProvider
             bool appendSystemDns,
             bool bypassPrivateRoute,
             PatchClashConfig patchConfig,
+            bool po0Whitelist,
           })
         > {
   SetupPatchProvider._()
@@ -101,6 +105,7 @@ final class SetupPatchProvider
       bool appendSystemDns,
       bool bypassPrivateRoute,
       PatchClashConfig patchConfig,
+      bool po0Whitelist,
     })
   >
   $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
@@ -110,6 +115,7 @@ final class SetupPatchProvider
     bool appendSystemDns,
     bool bypassPrivateRoute,
     PatchClashConfig patchConfig,
+    bool po0Whitelist,
   })
   create(Ref ref) {
     return setupPatch(ref);
@@ -121,6 +127,7 @@ final class SetupPatchProvider
       bool appendSystemDns,
       bool bypassPrivateRoute,
       PatchClashConfig patchConfig,
+      bool po0Whitelist,
     })
     value,
   ) {
@@ -132,13 +139,14 @@ final class SetupPatchProvider
               bool appendSystemDns,
               bool bypassPrivateRoute,
               PatchClashConfig patchConfig,
+              bool po0Whitelist,
             })
           >(value),
     );
   }
 }
 
-String _$setupPatchHash() => r'd09fb41d40ced4cd47c9131fe55e983e35128724';
+String _$setupPatchHash() => r'413315a219ae45ae2713fd0baa42bd8fb505e49b';
 
 @ProviderFor(trayState)
 final trayStateProvider = TrayStateProvider._();
@@ -476,7 +484,7 @@ final class VpnRouteAddressProvider
   }
 }
 
-String _$vpnRouteAddressHash() => r'bae2530b73b71ecff16aadfc395e60996d739d41';
+String _$vpnRouteAddressHash() => r'5e5654b66bf5a313ee5b1fc3c3827699167cf079';
 
 @ProviderFor(vpnOptions)
 final vpnOptionsProvider = VpnOptionsProvider._();

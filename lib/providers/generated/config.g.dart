@@ -581,6 +581,59 @@ abstract class _$ExcludeSSIDs extends $Notifier<List<String>> {
   }
 }
 
+@ProviderFor(Po0FirewallSetting)
+final po0FirewallSettingProvider = Po0FirewallSettingProvider._();
+
+final class Po0FirewallSettingProvider
+    extends $NotifierProvider<Po0FirewallSetting, Po0FirewallProps> {
+  Po0FirewallSettingProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'po0FirewallSettingProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$po0FirewallSettingHash();
+
+  @$internal
+  @override
+  Po0FirewallSetting create() => Po0FirewallSetting();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Po0FirewallProps value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Po0FirewallProps>(value),
+    );
+  }
+}
+
+String _$po0FirewallSettingHash() =>
+    r'194ba14f3c7ec09bfa91abaa93cf950986162a71';
+
+abstract class _$Po0FirewallSetting extends $Notifier<Po0FirewallProps> {
+  Po0FirewallProps build();
+  @$mustCallSuper
+  @override
+  WhenComplete runBuild() {
+    final ref = this.ref as $Ref<Po0FirewallProps, Po0FirewallProps>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<Po0FirewallProps, Po0FirewallProps>,
+              Po0FirewallProps,
+              Object?,
+              Object?
+            >;
+    return element.handleCreate(ref, build);
+  }
+}
+
 @ProviderFor(_config)
 final configProvider = _ConfigProvider._();
 
@@ -619,4 +672,4 @@ final class _ConfigProvider extends $FunctionalProvider<Config, Config, Config>
   }
 }
 
-String _$_configHash() => r'a9e717216fc1ca6b3526907bd578c4982bb6961a';
+String _$_configHash() => r'8859e3d1bdea8e48c0868bd787d54fbb17467af2';
