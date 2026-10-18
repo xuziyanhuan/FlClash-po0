@@ -1,0 +1,52 @@
+name: codegen
+
+# FlClash-po0: regenerates the committed freezed/riverpod/json and l10n output
+# and pushes it back to the branch, for edits made without a local Flutter SDK.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  FLUTTER_VERSION: '3.47.6'
+
+jobs:
+  codegen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+
+      - name: Skip native build hooks
+        run: |
+          cp pubspec.yaml /tmp/pubspec.yaml
+          yq -i '.hooks.user_defines.setup.build_assets = false | .hooks.user_defines.rust_api.build_assets = false' pubspec.yaml
+
+      - name: Generate
+        run: |
+          flutter pub get
+          dart run build_runner build --delete-conflicting-outputs
+          dart run intl_utils:generate
+          dart format lib test
+          cp /tmp/pubspec.yaml pubspec.yaml
+
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A lib test
+          if git diff --cached --quiet; then
+            echo 'Generated code is up to date.'
+            exit 0
+          fi
+          git commit -m 'chore(codegen): regenerate models, providers and l10n' -m 'Changelog: skip'
+          git push
