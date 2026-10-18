@@ -1440,7 +1440,11 @@ mod tests {
                     .is_none());
             }
         }
-        for host in ["127.0.0.1:47990", "localhost:47990", "FlClashPo0HelperService"] {
+        for host in [
+            "127.0.0.1:47990",
+            "localhost:47990",
+            "FlClashPo0HelperService",
+        ] {
             let response = warp::test::request()
                 .path("/logs")
                 .header("host", host)

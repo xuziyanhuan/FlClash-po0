@@ -357,7 +357,7 @@ void main() {
 
     test('a config without the section keeps the default', () {
       final json =
-          jsonDecode(jsonEncode(Config(themeProps: defaultThemeProps)))
+          jsonDecode(jsonEncode(const Config(themeProps: defaultThemeProps)))
               as Map<String, Object?>;
       final config = Config.fromJson(json..remove('po0FirewallProps'));
       expect(config.po0FirewallProps, defaultPo0FirewallProps);

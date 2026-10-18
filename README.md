@@ -3,7 +3,7 @@
 > - **Whitelist** page in the main navigation: add `pgnfw_` tokens and turn on **Auto whitelist**. While the app is open it checks at the interval (5 s by default) and adds your exit /24 when it is missing, proxy on or off.
 > - Requests always go direct: through the core's DIRECT-only `po0-direct` listener while the proxy runs, plus an `IP-CIDR,124.221.69.228/32,DIRECT` rule and a TUN / Android VPN route exclusion.
 > - Own identity: app id `io.github.xuziyanhuan.flclashpo0`, `FlClashPo0Core`, `FlClashPo0HelperService`, `flclashpo0://`.
-> - Downloads: [Releases](https://github.com/xuziyanhuan/FlClash-po0/releases), built by `.github/workflows/release.yaml` on a `v*` tag.
+> - Downloads: [Releases](https://github.com/xuziyanhuan/FlClash-po0/releases), Android APKs built by `.github/workflows/release.yaml` on a `v*` tag.
 >
 > The upstream FlClash README follows.
 
