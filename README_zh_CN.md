@@ -1,3 +1,12 @@
+> **FlClash-po0**：基于 FlClash 的改版，内置 [po0fw](https://github.com/w0ven/po0fw) 的 po0 防火墙自动加白，作为独立应用发布，可与官方 FlClash 同时安装。
+>
+> - 主导航「加白」页：添加 `pgnfw_` token、开启「自动加白」。应用打开期间按间隔（默认 5 秒）检查白名单，出口 /24 不在时自动加入，无论代理是否开启。
+> - 请求始终直连：代理运行时经内核的 `po0-direct` DIRECT 专用入口发出；配置中额外插入 `IP-CIDR,124.221.69.228/32,DIRECT` 并把该地址排除出 TUN / Android VPN 路由。
+> - 独立身份：包名 / bundle id `io.github.xuziyanhuan.flclashpo0`、`FlClashPo0Core`、`FlClashPo0HelperService`、URL scheme `flclashpo0://`。
+> - 下载：[Releases](https://github.com/xuziyanhuan/FlClash-po0/releases)。推送 `v*` 标签后由 `.github/workflows/release.yaml` 构建 Android / Windows / macOS。
+>
+> 以下为上游 FlClash 原始说明。
+
 <div align="center">
 
 <img src="assets/images/icon.png" alt="FlClash" width="88">

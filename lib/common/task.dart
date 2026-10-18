@@ -219,10 +219,11 @@ Future<RealProfile> _makeRealProfileTask(MakeRealProfileState data) async {
     ...realPatchConfig.tun.coreJson,
     'auto-detect-interface': true,
   };
-  if (data.bypassPrivateRoute) {
+  if (data.bypassPrivateRoute || data.directCidrs.isNotEmpty) {
     tun['route-exclude-address'] = [
       if (tun['route-exclude-address'] case final List routes) ...routes,
-      ...privateRouteAddress,
+      if (data.bypassPrivateRoute) ...privateRouteAddress,
+      ...data.directCidrs,
     ];
   }
   rawConfig['tun'] = tun;
@@ -372,7 +373,10 @@ Future<RealProfile> _makeRealProfileTask(MakeRealProfileState data) async {
         .map((item) => item.definition)
         .toList();
   }
-  rawConfig['rules'] = rules;
+  rawConfig['rules'] = [
+    for (final cidr in data.directCidrs) 'IP-CIDR,$cidr,DIRECT,no-resolve',
+    ...rules,
+  ];
   final yaml = await _encodeYaml(Map<String, dynamic>.from(rawConfig));
   return (yaml: yaml, md5: yaml.toMd5(), counts: configCountsOf(rawConfig));
 }

@@ -232,6 +232,9 @@ abstract class MakeRealProfileState with _$MakeRealProfileState {
     @Default({}) Map<String, dynamic> injectedRuleProviders,
     String? matchTarget,
     @Default(false) bool safeMode,
+
+    /// Sent DIRECT ahead of every rule and kept out of the desktop TUN.
+    @Default([]) List<String> directCidrs,
   }) = _MakeRealProfileState;
 }
 

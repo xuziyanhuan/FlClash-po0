@@ -19,9 +19,17 @@ UpdateParams updateParams(Ref ref) {
 }
 
 @riverpod
-({PatchClashConfig patchConfig, bool appendSystemDns, bool bypassPrivateRoute})
+({
+  PatchClashConfig patchConfig,
+  bool appendSystemDns,
+  bool bypassPrivateRoute,
+  bool po0Whitelist,
+})
 setupPatch(Ref ref) {
   return (
+    po0Whitelist: ref.watch(
+      po0FirewallSettingProvider.select((state) => state.enable),
+    ),
     patchConfig: ref.watch(
       patchClashConfigProvider.select((state) => state.setupOnly),
     ),
@@ -221,7 +229,17 @@ Future<List<String>> vpnRouteAddress(Ref ref) {
   final bypassPrivateRoute = ref.watch(
     networkSettingProvider.select((state) => state.bypassPrivateRoute),
   );
-  return routes.vpnRouteAddress(bypassPrivateRoute: bypassPrivateRoute);
+  final whitelistEnable = ref.watch(
+    po0FirewallSettingProvider.select((state) => state.enable),
+  );
+  return routes
+      .copyWith(
+        routeExcludeAddress: [
+          ...routes.routeExcludeAddress,
+          if (whitelistEnable) po0FirewallDirectCidr,
+        ],
+      )
+      .vpnRouteAddress(bypassPrivateRoute: bypassPrivateRoute);
 }
 
 @Riverpod(keepAlive: true)

@@ -500,6 +500,9 @@ abstract class Config with _$Config {
     WindowProps windowProps,
     @Default(defaultClashConfig) PatchClashConfig patchClashConfig,
     @Default([]) List<String> excludeSSIDs,
+    @JsonKey(fromJson: Po0FirewallProps.safeFromJson)
+    @Default(defaultPo0FirewallProps)
+    Po0FirewallProps po0FirewallProps,
   }) = _Config;
 
   factory Config.fromJson(Map<String, Object?> json) =>

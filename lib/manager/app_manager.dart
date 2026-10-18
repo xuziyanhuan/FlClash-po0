@@ -4,6 +4,8 @@ import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/common/system_dns.dart';
 import 'package:fl_clash/enum/enum.dart';
 import 'package:fl_clash/models/models.dart';
+import 'package:fl_clash/plugins/po0_screen.dart';
+import 'package:fl_clash/providers/po0_firewall.dart';
 import 'package:fl_clash/providers/providers.dart';
 import 'package:fl_clash/state.dart';
 import 'package:fl_clash/ui/ui.dart';
@@ -61,6 +63,12 @@ class _AppStateManagerState extends ConsumerState<AppStateManager>
         ref.read(setupActionProvider.notifier).syncSuspend();
       }
     });
+    ref.listenManual(initProvider, (prev, next) {
+      if (next) {
+        ref.read(po0FirewallProvider.notifier).start();
+      }
+    }, fireImmediately: true);
+    po0Screen?.listen(ref.read(po0FirewallProvider.notifier).setScreenOn);
     final systemDns = systemDnsCoordinator;
     if (systemDns != null) {
       ref.listenManual(shouldPatchSystemDnsProvider, (prev, next) {
@@ -89,6 +97,7 @@ class _AppStateManagerState extends ConsumerState<AppStateManager>
     _updateVisible(state);
     if (state == AppLifecycleState.resumed) {
       unawaited(ref.read(locationPermissionsProvider.notifier).refresh());
+      ref.read(po0FirewallProvider.notifier).pollNow();
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) {
           return;

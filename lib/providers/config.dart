@@ -95,6 +95,15 @@ class ExcludeSSIDs extends _$ExcludeSSIDs with AutoDisposeNotifierMixin {
   }
 }
 
+@riverpod
+class Po0FirewallSetting extends _$Po0FirewallSetting
+    with AutoDisposeNotifierMixin {
+  @override
+  Po0FirewallProps build() {
+    return defaultPo0FirewallProps;
+  }
+}
+
 @Riverpod(name: 'configProvider')
 Config _config(Ref ref) {
   final appSettingProps = ref.watch(appSettingProvider);
@@ -108,6 +117,7 @@ Config _config(Ref ref) {
   final proxiesStyleProps = ref.watch(proxiesStyleSettingProvider);
   final patchClashConfig = ref.watch(patchClashConfigProvider);
   final excludeSSIDs = ref.watch(excludeSSIDsProvider);
+  final po0FirewallProps = ref.watch(po0FirewallSettingProvider);
   return Config(
     appSettingProps: appSettingProps,
     windowProps: windowProps,
@@ -120,6 +130,7 @@ Config _config(Ref ref) {
     proxiesStyleProps: proxiesStyleProps,
     patchClashConfig: patchClashConfig,
     excludeSSIDs: excludeSSIDs,
+    po0FirewallProps: po0FirewallProps,
   );
 }
 
@@ -137,6 +148,7 @@ void writeConfig(Ref ref, Config config) {
   ref.read(patchClashConfigProvider.notifier).value = config.patchClashConfig
       .ensureControllerSecret();
   ref.read(excludeSSIDsProvider.notifier).value = config.excludeSSIDs;
+  ref.read(po0FirewallSettingProvider.notifier).value = config.po0FirewallProps;
 }
 
 List<Override> buildConfigOverrides(Config config) {
@@ -158,5 +170,8 @@ List<Override> buildConfigOverrides(Config config) {
       (_, _) => config.patchClashConfig,
     ),
     excludeSSIDsProvider.overrideWithBuild((_, _) => config.excludeSSIDs),
+    po0FirewallSettingProvider.overrideWithBuild(
+      (_, _) => config.po0FirewallProps,
+    ),
   ];
 }

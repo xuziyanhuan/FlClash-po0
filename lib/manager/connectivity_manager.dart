@@ -6,6 +6,7 @@ import 'package:fl_clash/enum/enum.dart';
 import 'package:fl_clash/providers/app.dart';
 import 'package:fl_clash/providers/config.dart';
 import 'package:fl_clash/providers/on_demand.dart';
+import 'package:fl_clash/providers/po0_firewall.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wifi_ssid/wifi_ssid.dart';
@@ -68,6 +69,7 @@ class _ConnectivityManagerState extends ConsumerState<ConnectivityManager> {
   void _handleResults(List<ConnectivityResult> results) {
     _onWifi = results.contains(ConnectivityResult.wifi);
     unawaited(_updateSsid());
+    ref.read(po0FirewallProvider.notifier).onNetworkChanged();
     widget.onConnectivityChanged?.call(results);
   }
 

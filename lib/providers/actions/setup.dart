@@ -472,6 +472,22 @@ class SetupAction extends _$SetupAction {
     if (hasScript) {
       rawConfig = await handleEvaluate(scriptContent!, rawConfig);
     }
+    final whitelistEnable = ref.read(
+      po0FirewallSettingProvider.select((state) => state.enable),
+    );
+    if (whitelistEnable) {
+      try {
+        rawConfig = withPo0DirectListener(
+          rawConfig,
+          await po0DirectListener.endpoint,
+        );
+      } catch (error) {
+        commonPrint.log(
+          'po0 firewall: no direct listener: $error',
+          logLevel: LogLevel.warning,
+        );
+      }
+    }
     final directory = await appPath.profilesPath;
     final injected = await _resolveInjectedProviders(
       setupState,
@@ -501,6 +517,7 @@ class SetupAction extends _$SetupAction {
             ? setupState.matchTarget
             : lastMatchTarget(profileBase.base.matchRules),
         safeMode: ref.read(safeModeProvider),
+        directCidrs: whitelistEnable ? const [po0FirewallDirectCidr] : [],
       ),
     );
     if (profileBase == null) {

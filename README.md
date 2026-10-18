@@ -1,3 +1,12 @@
+> **FlClash-po0**: a FlClash fork with the po0 firewall auto-whitelist from [po0fw](https://github.com/w0ven/po0fw) built in, shipped as a standalone app that installs side by side with official FlClash.
+>
+> - **Whitelist** page in the main navigation: add `pgnfw_` tokens and turn on **Auto whitelist**. While the app is open it checks at the interval (5 s by default) and adds your exit /24 when it is missing, proxy on or off.
+> - Requests always go direct: through the core's DIRECT-only `po0-direct` listener while the proxy runs, plus an `IP-CIDR,124.221.69.228/32,DIRECT` rule and a TUN / Android VPN route exclusion.
+> - Own identity: app id `io.github.xuziyanhuan.flclashpo0`, `FlClashPo0Core`, `FlClashPo0HelperService`, `flclashpo0://`.
+> - Downloads: [Releases](https://github.com/xuziyanhuan/FlClash-po0/releases), built by `.github/workflows/release.yaml` on a `v*` tag.
+>
+> The upstream FlClash README follows.
+
 <div align="center">
 
 <img src="assets/images/icon.png" alt="FlClash" width="88">
